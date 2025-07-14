@@ -8,7 +8,7 @@ node_modules/
 .vscode/
 
 # Environment variables
-.env
+.env*
 
 # MacOS system files
 .DS_Store
