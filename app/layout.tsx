@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import LocalFont from "next/font/Local";
+import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import AuthSessionProvider from "@/components/SessionProvider";
 
 export const metadata: Metadata = {
   title: "Coco Mountain Resort",
@@ -22,7 +23,7 @@ export const viewport: Viewport = {
   userScalable: false,
 };
 
-const loraSerif = LocalFont({
+const loraSerif = localFont({
   src: [
     {
       path: "./fonts/Lora-Regular.ttf",
@@ -75,15 +76,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${loraSerif.variable} font-serif`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+      <body className={`${loraSerif.variable}`}>
+        <AuthSessionProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </AuthSessionProvider>
       </body>
     </html>
   );
