@@ -1,0 +1,17 @@
+# This is a .gitignore file for a Node.js project
+node_modules/
+
+# Build output
+.next/
+
+# Configuration files
+.vscode/
+
+# Environment variables
+.env
+
+# MacOS system files
+.DS_Store
+
+# Logs
+*.log
