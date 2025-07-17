@@ -15,18 +15,27 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
-const components: { title: string; href: string; description: string }[] = [
+const components: {
+  title: string;
+  href: string;
+  description: string;
+  comingSoon?: boolean;
+}[] = [
   {
     title: "Wedding",
-    href: "/wedding",
+    // href: "/wedding",
+    href: "/",
     description:
       "A wedding is a ceremony where two people are united in marriage.",
+    comingSoon: true,
   },
   {
     title: "Meeting & Events",
-    href: "/meetings_and_events",
+    // href: "/meetings_and_events",
+    href: "/",
     description:
       "Meetings and events are gatherings of people for a specific purpose.",
+    comingSoon: true,
   },
   {
     title: "Reaching Us",
@@ -77,7 +86,18 @@ export default function Navigation() {
                 {components.map((component) => (
                   <ListItem
                     key={component.title}
-                    title={component.title}
+                    label={
+                      <>
+                        {component.title}
+                        {component.comingSoon && (
+                          <span className="ml-2 align-middle inline-block">
+                            <span className="bg-muted text-xs text-muted-foreground px-2 py-0.5 rounded-full font-medium">
+                              Coming Soon
+                            </span>
+                          </span>
+                        )}
+                      </>
+                    }
                     href={component.href}
                   >
                     {component.description}
@@ -95,8 +115,10 @@ export default function Navigation() {
 // ListItem component
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
+  Omit<React.ComponentPropsWithoutRef<"a">, "title"> & {
+    label: React.ReactNode;
+  }
+>(({ className, label, children, ...props }, ref) => {
   return (
     <li>
       <NavigationMenuLink asChild>
@@ -108,7 +130,7 @@ const ListItem = React.forwardRef<
           )}
           {...props}
         >
-          <div className="text-sm font-medium leading-none">{title}</div>
+          <div className="text-sm font-medium leading-none">{label}</div>
           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
             {children}
           </p>
