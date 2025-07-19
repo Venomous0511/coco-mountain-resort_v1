@@ -5,12 +5,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 
-import Navigation from "./Navigation";
 import Header from "./Header";
-import AuthActions from "./AuthAction";
+import Navigation from "./Navigation";
+import { ModeToggle } from "./ModeToggle";
+import NavigationMobile from "./NavigationMobile";
+// import AuthActions from "./AuthAction";
+
+// TODO: Create Login and Logout components
 
 export default function Navbar() {
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
 
   return (
     <>
@@ -33,7 +37,13 @@ export default function Navbar() {
 
         <Navigation />
 
-        <AuthActions session={session} />
+        <div className="flex items-center">
+          <ModeToggle />
+
+          {/* <AuthActions session={session} /> */}
+
+          <NavigationMobile />
+        </div>
       </Header>
     </>
   );

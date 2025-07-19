@@ -31,12 +31,12 @@ const navItems = [
   { href: "/accommodation", label: "Accommodation", icon: <BookA size={18} /> },
   { href: "/dining", label: "Dining", icon: <Utensils size={18} /> },
   { href: "/offers", label: "Offers", icon: <Percent size={18} /> },
-  { href: "/wedding", label: "Wedding", icon: <Heart size={18} /> },
-  {
-    href: "/meetings_and_events",
-    label: "Meetings & Events",
-    icon: <PartyPopper size={18} />,
-  },
+  // { href: "/wedding", label: "Wedding", icon: <Heart size={18} /> },
+  // {
+  //   href: "/meetings_and_events",
+  //   label: "Meetings & Events",
+  //   icon: <PartyPopper size={18} />,
+  // },
   { href: "/reach", label: "Reaching Us", icon: <Phone size={18} /> },
 ];
 
