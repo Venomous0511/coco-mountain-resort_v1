@@ -9,12 +9,10 @@ import Header from "./Header";
 import Navigation from "./Navigation";
 import { ModeToggle } from "./ModeToggle";
 import NavigationMobile from "./NavigationMobile";
-// import AuthActions from "./AuthAction";
-
-// TODO: Create Login and Logout components
+import AuthActions from "./AuthAction";
 
 export default function Navbar() {
-  // const { data: session } = useSession();
+  const { data: session } = useSession();
 
   return (
     <>
@@ -37,10 +35,10 @@ export default function Navbar() {
 
         <Navigation />
 
-        <div className="flex items-center">
+        <div className="flex items-center space-x-2 md:space-x-4">
           <ModeToggle />
 
-          {/* <AuthActions session={session} /> */}
+          <AuthActions session={session} />
 
           <NavigationMobile />
         </div>
