@@ -1,8 +1,8 @@
 "use client";
 
 import { ReactNode } from "react";
-import { AppSidebar } from "@/components/(Booking)/app-sidebar";
-import { NavActions } from "@/components/(Booking)/nav-actions";
+import { AppSidebar } from "@/components/(Dashboard)/app-sidebar";
+import { NavActions } from "@/components/(Dashboard)/nav-actions";
 import {
   SidebarInset,
   SidebarProvider,

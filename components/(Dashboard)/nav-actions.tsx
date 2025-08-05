@@ -33,6 +33,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { Badge } from "../ui/badge";
 
 const data = [
   [
@@ -115,9 +116,12 @@ export function NavActions({ disabled = false }: { disabled?: boolean }) {
           <MoreHorizontal className="h-4 w-4" />
         </Button>
 
-        <span className="absolute -top-2 right-4 rounded-full bg-primary px-1.5 py-0.5 text-[10px] font-medium text-primary-foreground shadow text-ellipsis whitespace-nowrap">
+        {/* <span className="rounded-full bg-primary px-1.5 py-0.5 text-[10px] font-medium text-primary-foreground shadow text-ellipsis whitespace-nowrap">
           Coming Soon
-        </span>
+        </span> */}
+        <Badge variant="default" className="absolute -top-2 right-4 text-[10px]">
+          Coming Soon
+        </Badge>
       </div>
     );
   }

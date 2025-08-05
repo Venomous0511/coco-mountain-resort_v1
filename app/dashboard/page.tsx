@@ -1,4 +1,5 @@
-import BookingCalendar from "@/components/(Booking)/BookingCalendar";
+import BookingCalendar from "@/components/(Dashboard)/BookingCalendar";
+import VoiceSearch from "@/components/VoiceSearch";
 
 // TODO: Replace with actual booking calendar component
 // TODO: Replace the Recent Bookings section with real data with the date of the last booking same as the cottage if any
@@ -37,6 +38,7 @@ export default function DashboardPage() {
               </p>
             </div>
           </div>
+          <VoiceSearch />
         </div>
 
         {/* Right Column: Calendar */}

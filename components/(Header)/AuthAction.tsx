@@ -67,13 +67,13 @@ export default function AuthActions({ session }: { session: Session | null }) {
 
           {/* Book Now Buttons */}
           <Link
-            href="/booking"
+            href="/dashboard"
             className="hidden lg:flex items-center rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white transition hover:bg-primary/70"
           >
             Book Now
           </Link>
           <Link
-            href="/booking"
+            href="/dashboard"
             className="lg:hidden flex items-center justify-center rounded-full bg-primary p-2 text-white transition hover:bg-primary/70"
             aria-label="Book Now"
           >

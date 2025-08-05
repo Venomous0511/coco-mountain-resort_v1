@@ -8,6 +8,7 @@ import {
   Inbox,
   LayoutDashboard,
   MessageCircleQuestion,
+  MessagesSquare,
   Search,
   Settings2,
   Sparkles,
@@ -15,8 +16,8 @@ import {
   UtensilsCrossed,
 } from "lucide-react";
 
-import { NavMain } from "@/components/(Booking)/nav-main";
-import { NavSecondary } from "@/components/(Booking)/nav-secondary";
+import { NavMain } from "@/components/(Dashboard)/nav-main";
+import { NavSecondary } from "@/components/(Dashboard)/nav-secondary";
 import {
   Sidebar,
   SidebarContent,
@@ -25,33 +26,32 @@ import {
 } from "@/components/ui/sidebar";
 import Image from "next/image";
 
-// This is sample data.
 const data = {
   navMain: [
     {
-      title: "Search",
-      url: "/booking/search",
-      icon: Search,
-    },
-    {
-      title: "Ask AI",
-      url: "/booking/ask-ai",
-      icon: Sparkles,
-    },
-    {
       title: "Dashboard",
-      url: "/booking",
+      url: "/dashboard",
       icon: LayoutDashboard,
     },
     {
       title: "Room Booking",
-      url: "/booking/room-booking",
+      url: "/dashboard/room-booking",
       icon: Bed,
     },
     {
       title: "Cottage Booking",
-      url: "/booking/cottage-booking",
+      url: "/dashboard/cottage-booking",
       icon: UtensilsCrossed,
+    },
+    {
+      title: "Ask AI",
+      url: "/dashboard/ask-ai",
+      icon: Sparkles,
+    },
+    {
+      title: "Give Feedback",
+      url: "/dashboard/feedback",
+      icon: MessagesSquare,
     },
   ],
   navSecondary: [
@@ -59,26 +59,18 @@ const data = {
       title: "Calendar",
       url: "#",
       icon: Calendar,
+      comingSoon: true,
     },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-    },
-    {
-      title: "Templates",
-      url: "#",
-      icon: Blocks,
-    },
-    {
-      title: "Trash",
-      url: "#",
-      icon: Trash2,
-    },
+    // {
+    //   title: "Settings",
+    //   url: "#",
+    //   icon: Settings2,
+    // },
     {
       title: "Help",
       url: "#",
       icon: MessageCircleQuestion,
+      comingSoon: true,
     },
   ],
 };
