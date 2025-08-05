@@ -1,4 +1,5 @@
-// /app/booking/layout.tsx
+"use client";
+
 import { ReactNode } from "react";
 import { AppSidebar } from "@/components/(Booking)/app-sidebar";
 import { NavActions } from "@/components/(Booking)/nav-actions";
@@ -13,10 +14,17 @@ import {
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
+  BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+
 export default function BookingLayout({ children }: { children: ReactNode }) {
+  const pathname = usePathname();
+  const segments = pathname.split("/").filter((seg) => seg);
+
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -31,12 +39,36 @@ export default function BookingLayout({ children }: { children: ReactNode }) {
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem>
-                  <BreadcrumbPage className="line-clamp-1">
-                    <BreadcrumbLink href="/">
-                      Coco Mountain Resort
-                    </BreadcrumbLink>
-                  </BreadcrumbPage>
+                  <BreadcrumbLink asChild>
+                    <Link href="/">Coco Mountain Resort</Link>
+                  </BreadcrumbLink>
                 </BreadcrumbItem>
+
+                {segments.map((segment, index) => {
+                  const href = "/" + segments.slice(0, index + 1).join("/");
+                  const isLast = index === segments.length - 1;
+
+                  const label = decodeURIComponent(segment)
+                    .replace(/-/g, " ")
+                    .replace(/\b\w/g, (char) => char.toUpperCase()); // Capitalize
+
+                  return (
+                    <div className="flex items-center" key={href}>
+                      <BreadcrumbSeparator className="hidden md:block" />
+                      <BreadcrumbItem>
+                        {isLast ? (
+                          <BreadcrumbPage className="line-clamp-1">
+                            {label}
+                          </BreadcrumbPage>
+                        ) : (
+                          <BreadcrumbLink asChild>
+                            <Link href={href}>{label}</Link>
+                          </BreadcrumbLink>
+                        )}
+                      </BreadcrumbItem>
+                    </div>
+                  );
+                })}
               </BreadcrumbList>
             </Breadcrumb>
           </div>

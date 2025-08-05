@@ -37,33 +37,33 @@ export default function AuthActions({ session }: { session: Session | null }) {
       .join("")
       .slice(0, 2) ?? "";
 
-  const handleVoiceSearch = () => {
-    try {
-      const recognition = new (window as any).webkitSpeechRecognition();
-      recognition.lang = "en-US";
-      recognition.onresult = (event: any) => {
-        const transcript = event.results[0][0].transcript;
-        alert(`You said: ${transcript}`);
-      };
-      recognition.start();
-    } catch (error) {
-      alert("Voice search is not supported in this browser.");
-    }
-  };
+  // const handleVoiceSearch = () => {
+  //   try {
+  //     const recognition = new (window as any).webkitSpeechRecognition();
+  //     recognition.lang = "en-US";
+  //     recognition.onresult = (event: any) => {
+  //       const transcript = event.results[0][0].transcript;
+  //       alert(`You said: ${transcript}`);
+  //     };
+  //     recognition.start();
+  //   } catch (error) {
+  //     alert("Voice search is not supported in this browser.");
+  //   }
+  // };
 
   return (
     <>
       {session?.user ? (
         <>
           {/* Voice Search */}
-          <Button
+          {/* <Button
             type="button"
             aria-label="Voice Search"
             className="p-2 rounded-full hover:bg-primary/70 transition-colors duration-200"
             onClick={handleVoiceSearch}
           >
             <Mic size={18} />
-          </Button>
+          </Button> */}
 
           {/* Book Now Buttons */}
           <Link
