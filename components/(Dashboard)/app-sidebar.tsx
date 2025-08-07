@@ -43,11 +43,11 @@ const data = {
       url: "/dashboard/cottage-booking",
       icon: UtensilsCrossed,
     },
-    {
-      title: "Ask AI",
-      url: "/dashboard/ask-ai",
-      icon: Sparkles,
-    },
+    // {
+    //   title: "Ask AI",
+    //   url: "/dashboard/ask-ai",
+    //   icon: Sparkles,
+    // },
     {
       title: "Give Feedback",
       url: "/dashboard/feedback",

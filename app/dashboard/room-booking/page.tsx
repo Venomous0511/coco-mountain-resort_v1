@@ -2,57 +2,16 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-
-const rooms = [
-  {
-    name: "Room 1",
-    image: "/images/(room)/standardroom.jpg",
-    price: "₱2,500",
-    description: "₱2,500 for 2 PAX",
-    features: [
-      "1 queen-sized bed",
-      "Private bathroom with hot & cold shower",
-      "Air conditioning for comfort",
-    ],
-  },
-  {
-    name: "Room 2",
-    image: "/images/(room)/standardroom.jpg",
-    price: "₱2,500",
-    description: "₱2,500 for 2 PAX Good for couples or friends",
-    features: [
-      "1 queen-sized bed",
-      "Private bathroom with hot & cold shower",
-      "Air conditioning for comfort",
-    ],
-  },
-  {
-    name: "Room 3",
-    image: "/images/(room)/room3.jpg",
-    price: "₱3,000",
-    description: "₱3,000 for 4 PAX Good for family or group",
-    features: [
-      "1 queen-sized bed",
-      "1 double deck beds",
-      "Private bathroom with hot & cold shower",
-      "Air conditioning for comfort",
-    ],
-  },
-  {
-    name: "NYC Room",
-    image: "/images/(room)/NYCRoom.jpg",
-    price: "₱5,000",
-    description: "₱5,000 for 8 PAX Good for family or group",
-    features: [
-      "4 double deck beds (8 pax)",
-      "No private bathroom",
-      "Air conditioning for comfort",
-    ],
-  },
-];
+import { useEffect, useState } from 'react';
+import { fetchRooms } from '@/sanity/lib/queries';
 
 export default function RoomBookingPage() {
   const router = useRouter();
+  const [rooms, setRooms] = useState<any[]>([]);
+
+  useEffect(() => {
+    fetchRooms().then(setRooms);
+  }, []);
 
   const handleBook = (room: any) => {
     const query = new URLSearchParams({
@@ -75,27 +34,31 @@ export default function RoomBookingPage() {
       <div className="grid gap-8 md:grid-cols-2">
         {rooms.map((room, index) => (
           <div
-            key={index}
+            key={room._id || index}
             className="rounded-xl overflow-hidden bg-muted/40 shadow hover:shadow-lg transition-shadow"
           >
-            <Image
-              src={room.image}
-              alt={room.name}
-              width={500}
-              height={300}
-              className="w-full h-56 object-cover"
-            />
+            {room.image && (
+              <Image
+                src={room.image}
+                alt={room.name}
+                width={500}
+                height={300}
+                className="w-full h-56 object-cover"
+              />
+            )}
 
             <div className="p-4">
               <h2 className="text-xl font-semibold text-primary">{room.name}</h2>
               <p className="mt-2 text-sm text-foreground">{room.description}</p>
 
               {/* Features */}
-              <ul className="mt-4 list-disc list-inside text-muted-foreground text-sm space-y-1">
-                {room.features.map((feature: string, i: number) => (
-                  <li key={i}>{feature}</li>
-                ))}
-              </ul>
+              {room.features?.length > 0 && (
+                <ul className="mt-4 list-disc list-inside text-muted-foreground text-sm space-y-1">
+                  {room.features.map((feature: string, i: number) => (
+                    <li key={i}>{feature}</li>
+                  ))}
+                </ul>
+              )}
 
               <div className="mt-4">
                 <button

@@ -13,6 +13,69 @@
  */
 
 // Source: schema.json
+export type Cottage = {
+  _id: string;
+  _type: "cottage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  price?: string;
+  note?: string;
+  features?: Array<string>;
+};
+
+export type Booking = {
+  _id: string;
+  _type: "booking";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  fullName?: string;
+  email?: string;
+  bookingName?: string;
+  price?: string;
+  bookingTime?: string;
+  date?: string;
+  type?: "room" | "cottage";
+};
+
+export type Rooms = {
+  _id: string;
+  _type: "rooms";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  price?: string;
+  description?: string;
+  features?: Array<string>;
+};
+
 export type User = {
   _id: string;
   _type: "user";
@@ -142,5 +205,5 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = User | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes = Cottage | Booking | Rooms | User | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;

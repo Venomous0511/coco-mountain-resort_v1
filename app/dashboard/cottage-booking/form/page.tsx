@@ -13,53 +13,53 @@ import { saveBookingToSanity } from "@/lib/action";
 import { fetchBookedDates } from '@/sanity/lib/queries';
 import { useSession } from "next-auth/react";
 
-export default function RoomBookingFormPage() {
+export default function CottageBookingFormPage() {
   const { data: session } = useSession()
   const searchParams = useSearchParams();
-    const nameParam = searchParams.get("name") ?? "Unknown Room";
+  const nameParam = searchParams.get("name") ?? "Unknown Room";
   const priceParam = searchParams.get("price");
 
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
   const [bookingTime, setBookingTime] = useState<"day" | "night" | "">("");
   const [fullName, setFullName] = useState(session?.user?.name || "");
   const [email, setEmail] = useState(session?.user?.email || "");
-  
+
   const [bookedDates, setBookedDates] = useState<Date[]>([]);
 
-  useEffect(() => {
-    fetchBookedDates(nameParam, "room").then(setBookedDates);
+    useEffect(() => {
+    fetchBookedDates(nameParam, "cottage").then(setBookedDates);
   }, [nameParam]);
-  
+
   const isDateDisabled = (date: Date) =>
     bookedDates.some(
       (bookedDate) => date.toDateString() === bookedDate.toDateString()
     );
 
-  const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!fullName || !email || !bookingTime || !selectedDate) {
-      alert("Please fill out all fields.");
-      return;
+        alert("Please fill out all fields.");
+        return;
     }
 
     try {
-      await saveBookingToSanity({
+        await saveBookingToSanity({
         fullName,
         email,
-        bookingName: nameParam ?? "Unknown Room", // Assuming this is the name for a room
+        bookingName: nameParam, 
         price: priceParam ?? "Unknown Price",
         bookingTime,
         date: selectedDate,
-        bookingType: "room", // Specify booking type
-      });
+        bookingType: "cottage", // Specify booking type
+        });
 
-      alert("✅ Room booking submitted successfully!");
-      // Optionally: router.push("/confirmation")
+        alert("✅ Cottage booking submitted successfully!");
+        // Optionally: router.push("/confirmation")
     } catch (error) {
-      alert("❌ Failed to submit booking.");
+        alert("❌ Failed to submit booking.");
     }
-  };
+    };
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-8">
@@ -111,11 +111,11 @@ export default function RoomBookingFormPage() {
             >
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="day" id="day" />
-                <Label htmlFor="day">Daytime (8 AM - 6 PM)</Label>
+                <Label htmlFor="day">Daytime (7 AM - 5 PM)</Label>
               </div>
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="night" id="night" />
-                <Label htmlFor="night">Nighttime (8 PM - 7 AM)</Label>
+                <Label htmlFor="night">Nighttime (7 PM - 6 AM)</Label>
               </div>
             </RadioGroup>
           </div>

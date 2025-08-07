@@ -1,20 +1,38 @@
+"use client";
+
+import { useSession } from "next-auth/react";
 import BookingCalendar from "@/components/(Dashboard)/BookingCalendar";
 import VoiceSearch from "@/components/VoiceSearch";
 
-// TODO: Replace with actual booking calendar component
-// TODO: Replace the Recent Bookings section with real data with the date of the last booking same as the cottage if any
-
 export default function DashboardPage() {
+  const { data: session, status } = useSession();
+
+  // Optional: handle loading state
+  if (status === "loading") {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p className="text-muted-foreground">Loading your dashboard...</p>
+      </div>
+    );
+  }
+
+  if (!session?.user) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p className="text-muted-foreground">You must be signed in to view the dashboard.</p>
+      </div>
+    );
+  }
+
+  const userName = session.user.name ?? "Guest";
+
   return (
     <div className="flex flex-1 flex-col gap-8 px-4 py-10">
-      {/* Top Section: Welcome + Calendar Side by Side */}
       <div className="flex flex-col gap-6 lg:flex-row">
-        {/* Left Column: Welcome + Recent Bookings */}
         <div className="flex-1 space-y-6">
-          {/* Welcome Card */}
           <div className="rounded-xl bg-muted/50 p-6 shadow-sm">
             <h1 className="text-2xl font-semibold text-primary">
-              Welcome to Your Dashboard
+              Welcome, {userName}
             </h1>
             <p className="mt-2 text-sm text-muted-foreground">
               View your booking activity, stats, and quick actions here.

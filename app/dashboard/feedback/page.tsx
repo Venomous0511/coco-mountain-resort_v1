@@ -40,6 +40,9 @@ export default function FeedbackPage() {
       <h1 className="text-3xl font-semibold mb-8 text-primary text-center">
         Give us Feedback about your stay
       </h1>
+      <p className="text-muted-foreground text-center mb-6">
+        Note: This will be show in the testimonials section in the home page
+      </p>
 
       <form
         onSubmit={handleSubmit}
