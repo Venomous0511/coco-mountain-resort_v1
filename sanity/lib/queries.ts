@@ -1,5 +1,5 @@
-// @sanity/lib/queries.ts
-import { client } from './client'; // adjust the path as needed
+import { client } from './client';
+import type { Booking } from "@/sanity/types";
 
 export async function fetchRooms() {
   const query = `*[_type == "rooms"] | order(name asc){
@@ -25,6 +25,25 @@ export async function fetchCottage() {
   }`;
 
   return await client.fetch(query);
+}
+
+export async function fetchAllBookings(): Promise<Booking[]> {
+  return await client.fetch(
+    `*[_type == "booking"]{
+      _id,
+      _type,
+      _createdAt,
+      _updatedAt,
+      _rev,
+      fullName,
+      email,
+      bookingName,
+      price,
+      bookingTime,
+      date,
+      type
+    }`
+  );
 }
 
 export async function fetchBookedDates(bookingName: string, bookingType: "room" | "cottage") {
