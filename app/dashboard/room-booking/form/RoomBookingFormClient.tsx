@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect } from "react";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
@@ -62,7 +62,6 @@ export default function RoomBookingFormPage() {
   };
 
   return (
-    <Suspense fallback={<div>Loading booking form...</div>}>
       <div className="max-w-2xl mx-auto px-4 py-8">
         <div className="bg-muted/40 rounded-xl shadow-md p-6 sm:p-8">
           <h1 className="text-2xl sm:text-3xl font-bold mb-2 text-primary">
@@ -152,6 +151,5 @@ export default function RoomBookingFormPage() {
           </form>
         </div>
       </div>
-    </Suspense>
   );
 }
