@@ -42,10 +42,7 @@ export const booking = defineType({
       title: 'Booking Type',
       type: 'string',
       options: {
-        list: [
-          { title: 'Room', value: 'room' },
-          { title: 'Cottage', value: 'cottage' },
-        ],
+        list: ["room", "cottage"],
       },
     }),
   ],

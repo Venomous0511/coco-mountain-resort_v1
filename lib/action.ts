@@ -68,7 +68,7 @@ export async function saveBookingToSanity({
     bookingTime,
     date: dateString,
     user: { _type: "reference", _ref: userId },
-    type: bookingType, // Add type to the document
+    bookingType, // Add type to the document
   };
 
   try {

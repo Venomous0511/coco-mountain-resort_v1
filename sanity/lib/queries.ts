@@ -101,7 +101,7 @@ export async function fetchAllBookings(): Promise<Booking[]> {
       price,
       bookingTime,
       date,
-      type
+      bookingType
     }`
   );
 }
@@ -111,7 +111,7 @@ export async function fetchBookedDates(
   bookingType: "room" | "cottage"
 ) {
   const results = await client.fetch(
-    `*[_type == "booking" && bookingName == $bookingName && type == $bookingType]{
+    `*[_type == "booking" && bookingName == $bookingName && bookingType == $bookingType]{
       date
     }`,
     { bookingName, bookingType }
