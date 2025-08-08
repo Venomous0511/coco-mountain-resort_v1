@@ -46,12 +46,12 @@ export async function saveBookingToSanity({
 
   // Check if the room or cottage is already booked for the specified time
   const existingBooking = await writeClient.fetch(
-    `*[_type == "booking" && bookingName == $bookingName && date == $date && bookingTime == $time && type == $type][0]`,
+    `*[_type == "booking" && bookingName == $bookingName && date == $date && bookingTime == $bookingTime && bookingType == $bookingType][0]`,
     {
       bookingName,
       date: dateString,
-      time: bookingTime,
-      type: bookingType, // Ensure the booking type is matched
+      bookingTime,
+      bookingType,
     }
   );
 
@@ -67,8 +67,7 @@ export async function saveBookingToSanity({
     price,
     bookingTime,
     date: dateString,
-    user: { _type: "reference", _ref: userId },
-    bookingType, // Add type to the document
+    bookingType,
   };
 
   try {

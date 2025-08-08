@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
@@ -62,94 +62,94 @@ export default function CottageBookingFormPage() {
   };
 
   return (
-      <div className="max-w-2xl mx-auto px-4 py-8">
-        <div className="bg-muted/40 rounded-xl shadow-md p-6 sm:p-8">
-          <h1 className="text-2xl sm:text-3xl font-bold mb-2 text-primary">
-            Book the {nameParam}
-          </h1>
-          <p className="mb-6 text-sm sm:text-base text-muted-foreground">
-            You're booking the <strong>{nameParam}</strong> for{" "}
-            <strong>{priceParam}</strong>. Please complete the form.
-          </p>
+    <div className="max-w-2xl mx-auto px-4 py-8">
+      <div className="bg-muted/40 rounded-xl shadow-md p-6 sm:p-8">
+        <h1 className="text-2xl sm:text-3xl font-bold mb-2 text-primary">
+          Book the {nameParam}
+        </h1>
+        <p className="mb-6 text-sm sm:text-base text-muted-foreground">
+          You're booking the <strong>{nameParam}</strong> for{" "}
+          <strong>{priceParam}</strong>. Please complete the form.
+        </p>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Full Name */}
-            <div className="space-y-2">
-              <Label htmlFor="name">Full Name</Label>
-              <Input
-                id="name"
-                type="text"
-                placeholder="John Smith"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                required
-                disabled={!!session?.user?.name}
-              />
-            </div>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Full Name */}
+          <div className="space-y-2">
+            <Label htmlFor="name">Full Name</Label>
+            <Input
+              id="name"
+              type="text"
+              placeholder="John Smith"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              required
+              disabled={!!session?.user?.name}
+            />
+          </div>
 
-            {/* Email */}
-            <div className="space-y-2">
-              <Label htmlFor="email">Email Address</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="johnsmith@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                disabled={!!session?.user?.email}
-              />
-            </div>
+          {/* Email */}
+          <div className="space-y-2">
+            <Label htmlFor="email">Email Address</Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="johnsmith@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              disabled={!!session?.user?.email}
+            />
+          </div>
 
-            {/* Booking Time */}
-            <div className="space-y-2">
-              <Label className="block mb-2">Choose Booking Time</Label>
-              <RadioGroup
-                value={bookingTime}
-                onValueChange={(val) => setBookingTime(val as "day" | "night")}
-                className="space-y-2"
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="day" id="day" />
-                  <Label htmlFor="day">Daytime (7 AM - 5 PM)</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="night" id="night" />
-                  <Label htmlFor="night">Nighttime (7 PM - 6 AM)</Label>
-                </div>
-              </RadioGroup>
-            </div>
-
-            {/* Date Picker */}
-            <div className="space-y-2">
-              <Label className="block mb-2">Select Date</Label>
-              <div className="border rounded-md p-2 w-full overflow-x-auto">
-                <Calendar
-                  mode="single"
-                  selected={selectedDate}
-                  numberOfMonths={2}
-                  onSelect={setSelectedDate}
-                  disabled={isDateDisabled}
-                  className="mx-auto"
-                />
-              </div>
-              {selectedDate && (
-                <p className="mt-2 text-sm text-muted-foreground text-center sm:text-left">
-                  Selected Date: {format(selectedDate, "MMMM dd, yyyy")}
-                </p>
-              )}
-            </div>
-
-            {/* Submit Button */}
-            <Button
-              type="submit"
-              disabled={!selectedDate || !bookingTime || !fullName || !email}
-              className="w-full"
+          {/* Booking Time */}
+          <div className="space-y-2">
+            <Label className="block mb-2">Choose Booking Time</Label>
+            <RadioGroup
+              value={bookingTime}
+              onValueChange={(val) => setBookingTime(val as "day" | "night")}
+              className="space-y-2"
             >
-              Confirm Booking
-            </Button>
-          </form>
-        </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="day" id="day" />
+                <Label htmlFor="day">Daytime (7 AM - 5 PM)</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="night" id="night" />
+                <Label htmlFor="night">Nighttime (7 PM - 6 AM)</Label>
+              </div>
+            </RadioGroup>
+          </div>
+
+          {/* Date Picker */}
+          <div className="space-y-2">
+            <Label className="block mb-2">Select Date</Label>
+            <div className="border rounded-md p-2 w-full overflow-x-auto">
+              <Calendar
+                mode="single"
+                selected={selectedDate}
+                numberOfMonths={2}
+                onSelect={setSelectedDate}
+                disabled={isDateDisabled}
+                className="mx-auto"
+              />
+            </div>
+            {selectedDate && (
+              <p className="mt-2 text-sm text-muted-foreground text-center sm:text-left">
+                Selected Date: {format(selectedDate, "MMMM dd, yyyy")}
+              </p>
+            )}
+          </div>
+
+          {/* Submit Button */}
+          <Button
+            type="submit"
+            disabled={!selectedDate || !bookingTime || !fullName || !email}
+            className="w-full"
+          >
+            Confirm Booking
+          </Button>
+        </form>
       </div>
+    </div>
   );
 }
