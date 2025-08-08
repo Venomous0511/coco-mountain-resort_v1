@@ -11,25 +11,24 @@ import {
 } from "@/components/ui/accordion";
 import { Card, CardContent } from "@/components/ui/card";
 
-// import Testimonial, {
-//   TestimonialTypes,
-// } from "@/components/(Testimonials)/Testimonials";
-// import {
-//   TESTIMONIALS_QUERY,
-//   STATISTICS_QUERY,
-//   FAQS_QUERY,
-// } from "@/sanity/lib/queries";
+import Testimonial, {
+  TestimonialTypes,
+} from "@/components/(Testimonials)/Testimonials";
 
-// import { Statistics, Faqs } from "@/sanity/types";
-import { client } from "@/sanity/lib/client";
+import {
+  fetchFaqs,
+  fetchStatistics,
+  fetchTestimonials,
+} from "@/sanity/lib/queries";
+
+import { Statistics, Faqs } from "@/sanity/types";
 
 export default async function Home() {
-  // const testimonials: TestimonialTypes[] =
-  //   await client.fetch(TESTIMONIALS_QUERY);
+  const testimonials: TestimonialTypes[] = await fetchTestimonials();
 
-  // const stats: Statistics[] = await client.fetch(STATISTICS_QUERY);
+  const stats: Statistics[] = await fetchStatistics();
 
-  // const faqs: Faqs[] = await client.fetch(FAQS_QUERY);
+  const faqs: Faqs[] = await fetchFaqs();
 
   return (
     <>
@@ -96,7 +95,7 @@ export default async function Home() {
           </div>
 
           <dl className="my-6 grid grid-cols-1 gap-4 divide-y divide-gray-300 dark:divide-gray-700 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
-            {/* {stats.map((stat) => (
+            {stats.map((stat) => (
               <Card
                 key={stat._id}
                 className="text-center border-none shadow-sm"
@@ -110,7 +109,7 @@ export default async function Home() {
                   </dt>
                 </CardContent>
               </Card>
-            ))} */}
+            ))}
           </dl>
         </ScrollReveal>
       </section>
@@ -206,16 +205,16 @@ export default async function Home() {
           {/* <Suspense fallback={<Loading />}>
             <TestimonialsList />
           </Suspense> */}
-          <div className="columns-1 gap-8 sm:columns-2 lg:columns-3">
-            {/* {testimonials?.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {testimonials?.length > 0 ? (
               testimonials.map((testimonial) => (
                 <Testimonial key={testimonial._id} testimonial={testimonial} />
               ))
             ) : (
-              <div className="text-center text-muted-foreground col-span-full">
+              <div className="text-center text-muted-foreground col-span-full mx-auto">
                 No testimonials available at the moment.
               </div>
-            )} */}
+            )}
           </div>
         </div>
       </section>
@@ -223,13 +222,8 @@ export default async function Home() {
       {/* FAQS */}
       <section className="section bg-background">
         <h2 className="heading text-center">Frequently Asked Questions</h2>
-
-        {/* <Suspense fallback={<Loading />}>
-            <FaqsList />
-          </Suspense> */}
-
         <Accordion type="multiple" className="w-full space-y-2">
-          {/* {faqs.map((faq, index) => (
+          {faqs.map((faq, index) => (
             <AccordionItem
               key={faq._id}
               value={`item-${index}`}
@@ -255,7 +249,7 @@ export default async function Home() {
                 </AccordionContent>
               </ScrollReveal>
             </AccordionItem>
-          ))} */}
+          ))}
         </Accordion>
       </section>
     </>

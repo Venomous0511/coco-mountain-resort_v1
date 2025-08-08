@@ -3,30 +3,26 @@
 import { writeClient } from "@/sanity/lib/client";
 import { User } from "next-auth";
 
-/**
- * Saves a user to Sanity, ensuring the ID is sanitized and image URL is valid.
- * @param user - The authenticated user object from NextAuth
- */
-export async function saveUserToSanity(user: User) {
-    if (!user.email) return;
+export async function saveUserToSanity(user: User): Promise<{ id: string } | void> {
+  if (!user.email) return;
 
-    const safeId = `user-${user.email.replace(/[@.]/g, "_")}`;
+  const safeId = `user-${user.email.replace(/[@.]/g, "_")}`;
 
-    const doc = {
-        _type: "user",
-        _id: safeId,
-        name: user.name ?? "",
-        email: user.email,
-        image: typeof user.image === "string" ? user.image : undefined,
-    };
+  const doc = {
+    _type: "user",
+    _id: safeId,
+    name: user.name ?? "",
+    email: user.email,
+    image: typeof user.image === "string" ? user.image : undefined,
+  };
 
-    try {
-        await writeClient.createOrReplace(doc);
-    } catch (err) {
-        console.error("Failed to save user to Sanity:", err);
-    }
+  try {
+    await writeClient.createOrReplace(doc);
+    return { id: safeId };
+  } catch (err) {
+    console.error("Failed to save user to Sanity:", err);
+  }
 }
-
 
 export async function saveBookingToSanity({
   fullName,
@@ -84,3 +80,35 @@ export async function saveBookingToSanity({
   }
 }
 
+export async function saveTestimonialToSanity({
+  name,
+  comment,
+  rating,
+  userId,
+}: {
+  name: string;
+  comment: string;
+  rating: number;
+  userId?: string; // Optional: Only if logged in
+}) {
+  const doc = {
+    _type: "testimonials",
+    title: name,
+    comment,
+    rating,
+    ...(userId && {
+      users: {
+        _type: "reference",
+        _ref: userId,
+      },
+    }),
+  };
+
+  try {
+    const result = await writeClient.create(doc);
+    return result;
+  } catch (error) {
+    console.error("❌ Failed to save testimonial:", error);
+    throw error;
+  }
+}

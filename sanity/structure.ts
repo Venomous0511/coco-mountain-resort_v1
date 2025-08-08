@@ -9,5 +9,9 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem('rooms').title('Rooms'),
       S.documentTypeListItem('booking').title('Booking'),
       S.documentTypeListItem('cottage').title('Cottage'),
-      // S.documentTypeListItem('testimonials').title('Testimonials'),
+      S.documentTypeListItem('testimonials').title('Testimonials'),
+      S.documentTypeListItem('statistics').title('Statistics'),
+      S.documentTypeListItem('faqs').title('Faqs'),
+      S.documentTypeListItem('menu').title('Menu'),
+      S.documentTypeListItem('deals').title('Deals'),
     ])

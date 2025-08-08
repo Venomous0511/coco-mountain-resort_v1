@@ -5,13 +5,12 @@ import Image from "next/image";
 import BackgroundBlob from "@/components/BackgroundBlob";
 import ScrollReveal from "@/components/ScrollReveal";
 
-import { client } from "@/sanity/lib/client";
-// import { DINING_QUERY } from "@/sanity/lib/queries";
-// import { Menu } from "@/sanity/types";
-// import DiningMenu from "@/components/(Menu)/DiningMenu";
+import { fetchDinings } from "@/sanity/lib/queries";
+import { Menu } from "@/sanity/types";
+import DiningMenu from "@/components/(Menu)/DiningMenu";
 
 export default async function Dining() {
-  // const menuItems: Menu[] = await client.fetch(DINING_QUERY);
+  const menuItems: Menu[] = await fetchDinings();
 
   return (
     <>
@@ -138,7 +137,7 @@ export default async function Dining() {
           </ScrollReveal>
 
           {/* DINING MENU PROPS */}
-          {/* <DiningMenu items={menuItems} /> */}
+          <DiningMenu items={menuItems} />
         </div>
       </section>
     </>

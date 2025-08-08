@@ -16,7 +16,7 @@ import { useSession } from "next-auth/react";
 export default function RoomBookingFormPage() {
   const { data: session } = useSession()
   const searchParams = useSearchParams();
-    const nameParam = searchParams.get("name") ?? "Unknown Room";
+  const nameParam = searchParams.get("name") ?? "Unknown Room";
   const priceParam = searchParams.get("price");
 
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();

@@ -5,37 +5,9 @@ import React from "react";
 import BackgroundBlob from "@/components/BackgroundBlob";
 import ScrollReveal from "@/components/ScrollReveal";
 
-// import { Deals } from "@/sanity/types";
-// import { client } from "@/sanity/lib/client";
-// import { DEALS_QUERY } from "@/sanity/lib/queries";
-// import { urlFor } from "@/sanity/lib/image";
-
-// const deals = [
-//   {
-//     name: "Romantic Valentine's Escape",
-//     description:
-//       "Celebrate love with a luxurious getaway. Enjoy complimentary spa treatments, candlelit dinners, and breathtaking views to make your moments unforgettable.",
-//     date: "2025-02-01",
-//     month: "Feb 2025",
-//     image: "/images/valentines-deals.jpg",
-//   },
-//   {
-//     name: "Anniversary Celebration",
-//     description:
-//       "Join us in celebrating our resort's anniversary with exclusive perks! Enjoy special discounts, festive events, and delightful surprises throughout your stay.",
-//     date: "2025-07-01",
-//     month: "July 2025",
-//     image: "/images/anniversary-deals.jpg",
-//   },
-//   {
-//     name: "Enchanting Christmas",
-//     description:
-//       "Unwrap joy this holiday season with our exclusive Christmas package. Experience festive feasts, cozy accommodations, and magical winter activities.",
-//     date: "2025-12-01",
-//     month: "Dec 2025",
-//     image: "/images/christmas-deals.jpg",
-//   },
-// ];
+import { Deals } from "@/sanity/types";
+import { fetchDeals } from "@/sanity/lib/queries";
+import { urlFor } from "@/sanity/lib/image";
 
 const activities = [
   {
@@ -77,7 +49,7 @@ const activities = [
 ];
 
 export default async function Offers() {
-  // const deals: Deals[] = await client.fetch(DEALS_QUERY);
+  const deals: Deals[] = await fetchDeals();
 
   return (
     <>
@@ -138,7 +110,7 @@ export default async function Offers() {
           </div>
         </ScrollReveal>
 
-        {/* <ScrollReveal
+        <ScrollReveal
           threshold={0.1}
           variants={{
             hidden: { opacity: 0, y: 50 },
@@ -189,7 +161,7 @@ export default async function Offers() {
               </article>
             ))}
           </div>
-        </ScrollReveal> */}
+        </ScrollReveal>
       </section>
 
       {/* DIVIDER */}

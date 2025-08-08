@@ -1,4 +1,4 @@
-import { client } from './client';
+import { client } from "./client";
 import type { Booking } from "@/sanity/types";
 
 export async function fetchRooms() {
@@ -27,6 +27,66 @@ export async function fetchCottage() {
   return await client.fetch(query);
 }
 
+export async function fetchTestimonials() {
+  const query = `*[_type == "testimonials"]{
+    _id,
+    _type,
+    comment,
+    rating,
+    users->{
+      name,
+      image
+    }
+  } | order(_createdAt desc)`;
+
+  return await client.fetch(query);
+}
+
+export async function fetchStatistics() {
+  const query = `*[_type == "statistics"]{
+    _id,
+    title,
+    value
+  }`;
+
+  return await client.fetch(query);
+}
+
+export async function fetchFaqs() {
+  const query = `*[_type == "faqs"]{
+    _id,
+    question,
+    answer
+  } | order(_createdAt desc)`;
+
+  return await client.fetch(query);
+}
+
+export async function fetchDinings() {
+  const query = `*[_type == "menu"]{
+    _id,
+    foodItem,
+    price,
+    category,
+    image
+  }`;
+
+  return await client.fetch(query);
+}
+
+export async function fetchDeals() {
+  const query = `*[_type == "deals"]{
+    _id,
+    dealName,
+    date,
+    description,
+    month,
+    image
+  }`;
+
+  return await client.fetch(query);
+}
+
 export async function fetchAllBookings(): Promise<Booking[]> {
   return await client.fetch(
     `*[_type == "booking"]{
@@ -46,7 +106,10 @@ export async function fetchAllBookings(): Promise<Booking[]> {
   );
 }
 
-export async function fetchBookedDates(bookingName: string, bookingType: "room" | "cottage") {
+export async function fetchBookedDates(
+  bookingName: string,
+  bookingType: "room" | "cottage"
+) {
   const results = await client.fetch(
     `*[_type == "booking" && bookingName == $bookingName && type == $bookingType]{
       date
@@ -55,6 +118,8 @@ export async function fetchBookedDates(bookingName: string, bookingType: "room" 
   );
 
   // Convert to Date objects
-  const dates = results.map((booking: { date: string }) => new Date(booking.date));
+  const dates = results.map(
+    (booking: { date: string }) => new Date(booking.date)
+  );
   return dates;
 }
