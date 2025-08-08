@@ -64,7 +64,7 @@ export default async function Home() {
 
             <div className="mt-8 flex flex-wrap gap-4 justify-center md:justify-start items-center">
               <Link
-                href="/signup"
+                href="/"
                 className="block w-full rounded bg-primary px-12 py-3 text-sm font-semibold text-background shadow hover:bg-primary/70 focus:outline-none focus:ring-0 md:w-auto"
               >
                 Get Started
