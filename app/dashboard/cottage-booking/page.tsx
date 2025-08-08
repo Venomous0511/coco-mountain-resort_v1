@@ -18,7 +18,7 @@ export default function RoomBookingPage() {
       name: room.name,
       price: room.price,
     });
-    router.push(`/dashboard/cottage-booking/form?${query.toString()}`);
+    router.replace(`/dashboard/cottage-booking/form?${query.toString()}`);
   };
 
   return (

@@ -21,7 +21,7 @@ export default function BookingCalendar() {
 
   const bookedDates = bookings
     .filter((b) => !!b.date)
-    .map((b) => parseISO(b.date!)); // <-- `!` tells TypeScript you're sure it's not undefined
+    .map((b) => parseISO(b.date!));
 
   const selectedBookings = selected
     ? bookings.filter((b) => b.date && isSameDay(parseISO(b.date), selected))
@@ -58,7 +58,7 @@ export default function BookingCalendar() {
               className="border rounded-md p-3 bg-muted/30"
             >
               <p><strong>Room/Cottage:</strong> {booking.bookingName || "N/A"}</p>
-              <p><strong>Type:</strong> {booking.bookingType}</p>
+              <p><strong>Type:</strong> {booking.bookingtype}</p>
               <p>
                 <strong>Time:</strong> {booking.bookingTime === "day" ? "Day Time" : "Night Time"}
               </p>

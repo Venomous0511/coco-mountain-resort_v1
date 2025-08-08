@@ -38,7 +38,7 @@ export const booking = defineType({
       type: "date",
     }),
     defineField({
-      name: 'type',
+      name: 'bookingtype',
       title: 'Booking Type',
       type: 'string',
       options: {

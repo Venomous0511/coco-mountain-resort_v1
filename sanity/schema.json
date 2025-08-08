@@ -686,7 +686,7 @@
         },
         "optional": true
       },
-      "type": {
+      "bookingtype": {
         "type": "objectAttribute",
         "value": {
           "type": "union",

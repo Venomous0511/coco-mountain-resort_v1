@@ -133,7 +133,7 @@ export type Booking = {
   price?: string;
   bookingTime?: string;
   date?: string;
-  type?: "room" | "cottage";
+  bookingtype?: "room" | "cottage";
 };
 
 export type Rooms = {

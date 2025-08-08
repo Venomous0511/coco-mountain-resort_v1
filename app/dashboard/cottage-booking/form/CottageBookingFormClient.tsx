@@ -83,7 +83,7 @@ export default function CottageBookingFormPage() {
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 required
-                disabled={!!session}
+                disabled={!!session?.user?.name}
               />
             </div>
 
@@ -97,7 +97,7 @@ export default function CottageBookingFormPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                disabled={!!session}
+                disabled={!!session?.user?.email}
               />
             </div>
 
