@@ -58,7 +58,7 @@ export default function BookingCalendar() {
               className="border rounded-md p-3 bg-muted/30"
             >
               <p><strong>Room/Cottage:</strong> {booking.bookingName || "N/A"}</p>
-              <p><strong>Type:</strong> {booking.type}</p>
+              <p><strong>Type:</strong> {booking.bookingType}</p>
               <p>
                 <strong>Time:</strong> {booking.bookingTime === "day" ? "Day Time" : "Night Time"}
               </p>
