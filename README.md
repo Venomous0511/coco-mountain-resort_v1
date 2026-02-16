@@ -33,7 +33,7 @@ Now open your browser and visit: [http://localhost:3000](http://localhost:3000)
 
 ## 🌐 Live Demo
 
-Check out the live app: [https://yourwebapp.com](https://yourwebapp.com)
+Check out the live app: [https://cocomountainresort.netlify.app](https://cocomountainresort.netlify.app/)
 
 ---
 
